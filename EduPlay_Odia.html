@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPlay - Rural Education Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 25%, #45b7d1 50%, #96ceb4 75%, #feca57 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            border-radius: 25px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 35px rgba(255, 154, 158, 0.3);
+            backdrop-filter: blur(15px);
+            text-align: center;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            animation: headerFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes headerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .header h1 {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: none;
+            animation: textShimmer 3s ease-in-out infinite;
+            font-weight: bold;
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .progress-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 10px;
+            min-width: 80px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .character-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .character {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(45deg, #ff6b6b 0%, #4ecdc4 25%, #45b7d1 50%, #96ceb4 75%, #feca57 100%);
+            background-size: 400% 400%;
+            animation: characterGradient 3s ease infinite, characterBounce 2s ease-in-out infinite;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: characterRotate 8s linear infinite;
+        }
+
+        @keyframes characterGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes characterRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes characterBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) scale(1); }
+            40% { transform: translateY(-15px) scale(1.05); }
+            60% { transform: translateY(-8px) scale(1.02); }
+        }
+
+        .character-customize {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .color-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .color-btn.active {
+            border-color: #2c3e50;
+            transform: scale(1.2);
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .subject-card {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 25px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .subject-card:hover::before {
+            left: 100%;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 154, 158, 0.4);
+            border-color: #ff6b6b;
+        }
+
+        .subject-card.active {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 20px 50px rgba(255, 107, 107, 0.5);
+        }
+
+        .subject-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+            animation: iconBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(5deg); }
+            75% { transform: translateY(-3px) rotate(-3deg); }
+        }
+
+        .subject-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .subject-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .game-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .game-section.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .game-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .game-instructions {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .math-game {
+            text-align: center;
+        }
+
+        .question-container {
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 30px;
+            margin: 20px 0;
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: questionPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes questionPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .question-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .question {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .answer-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .answer-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            color: #2c3e50;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .answer-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .answer-btn:hover::before {
+            left: 100%;
+        }
+
+        .answer-btn:hover {
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+            border-color: #ff6b6b;
+        }
+
+        .answer-btn.correct {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-color: #27ae60;
+            animation: correctCelebration 1s ease;
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.6);
+        }
+
+        .answer-btn.wrong {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-color: #c0392b;
+            animation: wrongShake 0.8s ease;
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.4);
+        }
+
+        @keyframes correctCelebration {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(5deg); }
+            50% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.15) rotate(3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            10% { transform: translateX(-10px) rotate(-5deg); }
+            20% { transform: translateX(10px) rotate(5deg); }
+            30% { transform: translateX(-8px) rotate(-3deg); }
+            40% { transform: translateX(8px) rotate(3deg); }
+            50% { transform: translateX(-5px) rotate(-2deg); }
+            60% { transform: translateX(5px) rotate(2deg); }
+            70% { transform: translateX(-3px) rotate(-1deg); }
+            80% { transform: translateX(3px) rotate(1deg); }
+            90% { transform: translateX(-1px) rotate(0deg); }
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d5f4e6;
+            color: #27ae60;
+            border: 2px solid #2ecc71;
+        }
+
+        .feedback.wrong {
+            background: #fadbd8;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(52, 152, 219, 0.3);
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .next-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .odia-game {
+            text-align: center;
+        }
+
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .alphabet-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #4ecdc4 100%);
+            color: #2c3e50;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            padding: 18px;
+            border-radius: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alphabet-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .alphabet-btn:hover::before {
+            left: 100%;
+        }
+
+        .alphabet-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(255, 154, 158, 0.4);
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            color: white;
+        }
+
+        .alphabet-btn.selected {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            transform: scale(1.1);
+        }
+
+        .word-display {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reward-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 25%, #45b7d1 50%, #96ceb4 75%, #feca57 100%);
+            background-size: 400% 400%;
+            animation: rewardGradient 2s ease infinite;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 25px 80px rgba(255, 107, 107, 0.4);
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            z-index: 1000;
+            display: none;
+            animation: rewardPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes rewardGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes rewardPop {
+            0% { transform: translate(-50%, -50%) scale(0.3) rotate(-180deg); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.2) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .reward-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: rewardBounce 1s ease-in-out infinite;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes rewardBounce {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            25% { transform: translateY(-10px) scale(1.1); }
+            50% { transform: translateY(-5px) scale(1.05); }
+            75% { transform: translateY(-8px) scale(1.08); }
+        }
+
+        .reward-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .reward-points {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(149, 165, 166, 0.3);
+        }
+
+        .level-indicator {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .level-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .level-progress {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 5px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .subject-card {
+                padding: 15px;
+            }
+            
+            .subject-icon {
+                font-size: 2.5rem;
+            }
+            
+            .question {
+                font-size: 2rem;
+            }
+            
+            .answer-btn {
+                padding: 12px;
+                font-size: 1.3rem;
+            }
+            
+            .alphabet-btn {
+                padding: 12px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .answer-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .alphabet-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Offline indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 1001;
+            display: none;
+        }
+
+        .offline-indicator.show {
+            display: block;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #3498db;
+            border-radius: 25px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-toggle:hover {
+            background: #3498db;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .language-toggle.odia {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+        }
+
+        .language-toggle.english {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-indicator" id="offlineIndicator" data-odia="ଅଫଲାଇନ୍" data-english="Offline">Offline</div>
+    <div class="language-toggle english" id="languageToggle" onclick="toggleLanguage()">English</div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 data-odia="🎮 ଏଡୁପ୍ଲେ" data-english="🎮 EduPlay">🎮 EduPlay</h1>
+            <p data-odia="ଓଡ଼ିଶାର ଗ୍ରାମାଞ୍ଚଳ ପାଇଁ ଖେଳ-ଶିକ୍ଷା ପ୍ଲାଟଫର୍ମ" data-english="Gamified Learning Platform for Rural Odisha">Gamified Learning Platform for Rural Odisha</p>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;" data-odia="ତୁମର ଅଗ୍ରଗତି" data-english="Your Progress">Your Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalPoints">0</div>
+                    <div class="stat-label" data-odia="ପଏଣ୍ଟ" data-english="Points">Points</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="level">1</div>
+                    <div class="stat-label" data-odia="ଲେଭଲ" data-english="Level">Level</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="streak">0</div>
+                    <div class="stat-label" data-odia="ସ୍ଟ୍ରିକ୍" data-english="Streak">Streak</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Character Section -->
+        <div class="character-section">
+            <h3 style="color: #2c3e50; margin-bottom: 15px;" data-odia="ତୁମର ଚରିତ୍ର" data-english="Your Character">Your Character</h3>
+            <div class="character" id="character">😊</div>
+            <div class="character-customize">
+                <div class="color-btn" style="background: linear-gradient(45deg, #ff6b6b, #feca57);" onclick="changeCharacter('😊')"></div>
+                <div class="color-btn" style="background: linear-gradient(45deg, #48dbfb, #0abde3);" onclick="changeCharacter('🤖')"></div>
+                <div class="color-btn" style="background: linear-gradient(45deg, #ff9ff3, #f368e0);" onclick="changeCharacter('👸')"></div>
+                <div class="color-btn" style="background: linear-gradient(45deg, #54a0ff, #2e86de);" onclick="changeCharacter('🦸')"></div>
+            </div>
+        </div>
+
+        <!-- Level Indicator -->
+        <div class="level-indicator">
+            <div class="level-title" id="currentLevelTitle">Mathematics - Basic Addition</div>
+            <div class="level-progress" id="levelProgress">Question 1 of 10</div>
+        </div>
+
+        <!-- Subjects Grid -->
+        <div class="subjects-grid" id="subjectsGrid">
+            <div class="subject-card" onclick="selectSubject('math')">
+                <span class="subject-icon">🔢</span>
+                <div class="subject-title" data-odia="ଗଣିତ" data-english="Mathematics">Mathematics</div>
+                <div class="subject-description" data-odia="ଯୋଗ, ବିୟୋଗ, ଗୁଣନ" data-english="Addition, Subtraction, Multiplication">Addition, Subtraction, Multiplication</div>
+            </div>
+            <div class="subject-card" onclick="selectSubject('odia')">
+                <span class="subject-icon">📝</span>
+                <div class="subject-title" data-odia="ଓଡ଼ିଆ" data-english="Odia Language">Odia Language</div>
+                <div class="subject-description" data-odia="ବର୍ଣ୍ଣମାଳା, ଶବ୍ଦ ଗଠନ" data-english="Alphabet, Word Building">Alphabet, Word Building</div>
+            </div>
+            <div class="subject-card" onclick="selectSubject('english')">
+                <span class="subject-icon">🔤</span>
+                <div class="subject-title" data-odia="ଇଂରାଜୀ" data-english="English">English</div>
+                <div class="subject-description" data-odia="ବର୍ଣ୍ଣମାଳା, ଶବ୍ଦ ଗଠନ" data-english="Alphabet, Word Building">Alphabet, Word Building</div>
+            </div>
+            <div class="subject-card" onclick="selectSubject('science')">
+                <span class="subject-icon">🌱</span>
+                <div class="subject-title" data-odia="ପରିବେଶ" data-english="Environment">Environment</div>
+                <div class="subject-description" data-odia="ଉଦ୍ଭିଦ, ପ୍ରାଣୀ, ପ୍ରକୃତି" data-english="Plants, Animals, Nature">Plants, Animals, Nature</div>
+            </div>
+        </div>
+
+        <!-- Math Game Section -->
+        <div class="game-section" id="mathGame">
+            <button class="back-btn" data-odia="← ଫେରିଯାଅ" data-english="← Go Back" onclick="showSubjects()">← Go Back</button>
+            <div class="game-header">
+                <h2 class="game-title" data-odia="🔢 ଗଣିତ ଖେଳ" data-english="🔢 Math Game">🔢 Math Game</h2>
+                <p class="game-instructions" data-odia="ସଠିକ୍ ଉତ୍ତର ଦେଇ ପଏଣ୍ଟ ଜିତ!" data-english="Answer correctly to earn points!">Answer correctly to earn points!</p>
+            </div>
+            <div class="math-game">
+                <div class="question-container">
+                    <div class="question" id="mathQuestion">5 + 3 = ?</div>
+                    <div class="answer-options" id="mathAnswers">
+                        <button class="answer-btn" onclick="checkAnswer(7)">7</button>
+                        <button class="answer-btn" onclick="checkAnswer(8)">8</button>
+                        <button class="answer-btn" onclick="checkAnswer(9)">9</button>
+                        <button class="answer-btn" onclick="checkAnswer(6)">6</button>
+                    </div>
+                </div>
+                <div class="feedback" id="mathFeedback"></div>
+                <button class="next-btn" id="nextMathBtn" data-odia="ପରବର୍ତ୍ତୀ ପ୍ରଶ୍ନ" data-english="Next Question" onclick="nextMathQuestion()" disabled>Next Question</button>
+            </div>
+        </div>
+
+        <!-- Odia Game Section -->
+        <div class="game-section" id="odiaGame">
+            <button class="back-btn" data-odia="← ଫେରିଯାଅ" data-english="← Go Back" onclick="showSubjects()">← Go Back</button>
+            <div class="game-header">
+                <h2 class="game-title" data-odia="📝 ଓଡ଼ିଆ ବର୍ଣ୍ଣମାଳା" data-english="📝 Odia Alphabet">📝 Odia Alphabet</h2>
+                <p class="game-instructions" data-odia="ବର୍ଣ୍ଣମାଳା ଚୟନ କରି ଶବ୍ଦ ଗଠନ କର!" data-english="Select the alphabet to build words!">Select the alphabet to build words!</p>
+            </div>
+            <div class="odia-game">
+                <div class="word-display" id="wordDisplay">ଅ</div>
+                <div class="alphabet-grid" id="alphabetGrid">
+                    <!-- Odia alphabets will be populated here -->
+                </div>
+                <button class="next-btn" data-odia="ନୂତନ ଶବ୍ଦ" data-english="New Word" onclick="nextOdiaWord()">New Word</button>
+            </div>
+        </div>
+
+        <!-- English Game Section -->
+        <div class="game-section" id="englishGame">
+            <button class="back-btn" data-odia="← ଫେରିଯାଅ" data-english="← Go Back" onclick="showSubjects()">← Go Back</button>
+            <div class="game-header">
+                <h2 class="game-title" data-odia="🔤 ଇଂରାଜୀ ବର୍ଣ୍ଣମାଳା" data-english="🔤 English Alphabet">🔤 English Alphabet</h2>
+                <p class="game-instructions" data-odia="ବର୍ଣ୍ଣମାଳା ଚୟନ କରି ଶବ୍ଦ ଗଠନ କର!" data-english="Select the alphabet to build words!">Select the alphabet to build words!</p>
+            </div>
+            <div class="english-game">
+                <div class="word-display" id="englishWordDisplay">A</div>
+                <div class="alphabet-grid" id="englishAlphabetGrid">
+                    <!-- English alphabets will be populated here -->
+                </div>
+                <button class="next-btn" data-odia="ନୂତନ ଶବ୍ଦ" data-english="New Word" onclick="nextEnglishWord()">New Word</button>
+            </div>
+        </div>
+
+        <!-- Reward Popup -->
+        <div class="reward-popup" id="rewardPopup">
+            <div class="reward-icon" id="rewardIcon">⭐</div>
+            <div class="reward-text" id="rewardText" data-odia="ବହୁତ ଭଲ!" data-english="Great Job!">Great Job!</div>
+            <div class="reward-points" id="rewardPoints">+10 ପଏଣ୍ଟ</div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        let gameState = {
+            currentSubject: null,
+            totalPoints: 0,
+            level: 1,
+            streak: 0,
+            character: '😊',
+            currentQuestion: 0,
+            totalQuestions: 10,
+            correctAnswers: 0,
+            mathQuestions: [],
+            odiaWords: ['ଅ', 'ଆ', 'ଇ', 'ଈ', 'ଉ', 'ଊ', 'ଋ', 'ଏ', 'ଐ', 'ଓ', 'ଔ'],
+            englishWords: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+            currentOdiaWord: 0,
+            currentEnglishWord: 0,
+            currentLanguage: 'english'
+        };
+
+        // Odia alphabets
+        const odiaAlphabets = [
+            'ଅ', 'ଆ', 'ଇ', 'ଈ', 'ଉ', 'ଊ', 'ଋ', 'ଏ', 'ଐ', 'ଓ', 'ଔ',
+            'କ', 'ଖ', 'ଗ', 'ଘ', 'ଙ', 'ଚ', 'ଛ', 'ଜ', 'ଝ', 'ଞ',
+            'ଟ', 'ଠ', 'ଡ', 'ଢ', 'ଣ', 'ତ', 'ଥ', 'ଦ', 'ଧ', 'ନ',
+            'ପ', 'ଫ', 'ବ', 'ଭ', 'ମ', 'ଯ', 'ର', 'ଲ', 'ଳ', 'ଶ',
+            'ଷ', 'ସ', 'ହ'
+        ];
+
+        // English alphabets
+        const englishAlphabets = [
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        ];
+
+        // Initialize the game
+        function initGame() {
+            loadGameState();
+            generateMathQuestions();
+            updateUI();
+            updateLanguage();
+            setupOfflineDetection();
+        }
+
+        // Load game state from localStorage
+        function loadGameState() {
+            const saved = localStorage.getItem('eduplay_state');
+            if (saved) {
+                const savedState = JSON.parse(saved);
+                gameState = { ...gameState, ...savedState };
+            }
+        }
+
+        // Save game state to localStorage
+        function saveGameState() {
+            localStorage.setItem('eduplay_state', JSON.stringify(gameState));
+        }
+
+        // Generate math questions
+        function generateMathQuestions() {
+            gameState.mathQuestions = [];
+            for (let i = 0; i < gameState.totalQuestions; i++) {
+                const num1 = Math.floor(Math.random() * 10) + 1;
+                const num2 = Math.floor(Math.random() * 10) + 1;
+                const operation = Math.random() < 0.5 ? '+' : '-';
+                let question, answer;
+                
+                if (operation === '+') {
+                    question = `${num1} + ${num2} = ?`;
+                    answer = num1 + num2;
+                } else {
+                    const larger = Math.max(num1, num2);
+                    const smaller = Math.min(num1, num2);
+                    question = `${larger} - ${smaller} = ?`;
+                    answer = larger - smaller;
+                }
+                
+                const options = generateOptions(answer);
+                gameState.mathQuestions.push({
+                    question: question,
+                    answer: answer,
+                    options: options
+                });
+            }
+        }
+
+        // Generate answer options
+        function generateOptions(correctAnswer) {
+            const options = [correctAnswer];
+            while (options.length < 4) {
+                const option = correctAnswer + Math.floor(Math.random() * 10) - 5;
+                if (option > 0 && !options.includes(option)) {
+                    options.push(option);
+                }
+            }
+            return options.sort(() => Math.random() - 0.5);
+        }
+
+        // Update UI elements
+        function updateUI() {
+            document.getElementById('totalPoints').textContent = gameState.totalPoints;
+            document.getElementById('level').textContent = gameState.level;
+            document.getElementById('streak').textContent = gameState.streak;
+            document.getElementById('character').textContent = gameState.character;
+            
+            const progress = (gameState.correctAnswers / gameState.totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            saveGameState();
+        }
+
+        // Toggle language
+        function toggleLanguage() {
+            gameState.currentLanguage = gameState.currentLanguage === 'odia' ? 'english' : 'odia';
+            updateLanguage();
+            saveGameState();
+        }
+
+        // Update language throughout the app
+        function updateLanguage() {
+            const toggle = document.getElementById('languageToggle');
+            const elements = document.querySelectorAll('[data-odia][data-english]');
+            
+            if (gameState.currentLanguage === 'odia') {
+                toggle.textContent = 'ଓଡ଼ିଆ';
+                toggle.className = 'language-toggle odia';
+                elements.forEach(el => {
+                    el.textContent = el.getAttribute('data-odia');
+                });
+            } else {
+                toggle.textContent = 'English';
+                toggle.className = 'language-toggle english';
+                elements.forEach(el => {
+                    el.textContent = el.getAttribute('data-english');
+                });
+            }
+        }
+
+        // Select subject
+        function selectSubject(subject) {
+            gameState.currentSubject = subject;
+            
+            // Update active subject card
+            document.querySelectorAll('.subject-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            event.target.closest('.subject-card').classList.add('active');
+            
+            // Show appropriate game section
+            document.querySelectorAll('.game-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            if (subject === 'math') {
+                document.getElementById('mathGame').classList.add('active');
+                updateLevelTitle('ଗଣିତ - ମୌଳିକ ଗଣନା', 'Mathematics - Basic Calculation');
+                startMathGame();
+            } else if (subject === 'odia') {
+                document.getElementById('odiaGame').classList.add('active');
+                updateLevelTitle('ଓଡ଼ିଆ - ବର୍ଣ୍ଣମାଳା', 'Odia - Alphabet');
+                startOdiaGame();
+            } else if (subject === 'english') {
+                document.getElementById('englishGame').classList.add('active');
+                updateLevelTitle('ଇଂରାଜୀ - ବର୍ଣ୍ଣମାଳା', 'English - Alphabet');
+                startEnglishGame();
+            }
+            
+            // Hide subjects grid
+            document.getElementById('subjectsGrid').style.display = 'none';
+        }
+
+        // Update level title based on language
+        function updateLevelTitle(odiaText, englishText) {
+            const levelTitle = document.getElementById('currentLevelTitle');
+            if (gameState.currentLanguage === 'odia') {
+                levelTitle.textContent = odiaText;
+            } else {
+                levelTitle.textContent = englishText;
+            }
+        }
+
+        // Show subjects grid
+        function showSubjects() {
+            document.querySelectorAll('.game-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('subjectsGrid').style.display = 'grid';
+            gameState.currentSubject = null;
+        }
+
+        // Start math game
+        function startMathGame() {
+            gameState.currentQuestion = 0;
+            gameState.correctAnswers = 0;
+            showMathQuestion();
+        }
+
+        // Show math question
+        function showMathQuestion() {
+            const question = gameState.mathQuestions[gameState.currentQuestion];
+            document.getElementById('mathQuestion').textContent = question.question;
+            
+            const answersContainer = document.getElementById('mathAnswers');
+            answersContainer.innerHTML = '';
+            
+            question.options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'answer-btn';
+                btn.textContent = option;
+                btn.onclick = () => checkAnswer(option);
+                answersContainer.appendChild(btn);
+            });
+            
+            document.getElementById('mathFeedback').style.display = 'none';
+            document.getElementById('nextMathBtn').disabled = true;
+            
+            // Update level progress
+            const progressText = gameState.currentLanguage === 'odia' ? 
+                `ପ୍ରଶ୍ନ ${gameState.currentQuestion + 1} ରୁ ${gameState.totalQuestions}` :
+                `Question ${gameState.currentQuestion + 1} of ${gameState.totalQuestions}`;
+            document.getElementById('levelProgress').textContent = progressText;
+        }
+
+        // Check math answer
+        function checkAnswer(selectedAnswer) {
+            const question = gameState.mathQuestions[gameState.currentQuestion];
+            const isCorrect = selectedAnswer === question.answer;
+            
+            // Disable all buttons
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.disabled = true;
+                if (parseInt(btn.textContent) === question.answer) {
+                    btn.classList.add('correct');
+                } else if (parseInt(btn.textContent) === selectedAnswer && !isCorrect) {
+                    btn.classList.add('wrong');
+                }
+            });
+            
+            const feedback = document.getElementById('mathFeedback');
+            feedback.style.display = 'block';
+            
+            if (isCorrect) {
+                if (gameState.currentLanguage === 'odia') {
+                    feedback.textContent = 'ବହୁତ ଭଲ! ସଠିକ୍ ଉତ୍ତର! 🎉';
+                } else {
+                    feedback.textContent = 'Excellent! Correct Answer! 🎉';
+                }
+                feedback.className = 'feedback correct';
+                gameState.correctAnswers++;
+                gameState.streak++;
+                gameState.totalPoints += 10;
+                showReward('correct');
+            } else {
+                if (gameState.currentLanguage === 'odia') {
+                    feedback.textContent = `ଭୁଲ୍ ଉତ୍ତର। ସଠିକ୍ ଉତ୍ତର ହେଉଛି: ${question.answer}`;
+                } else {
+                    feedback.textContent = `Wrong Answer. Correct answer is: ${question.answer}`;
+                }
+                feedback.className = 'feedback wrong';
+                gameState.streak = 0;
+            }
+            
+            document.getElementById('nextMathBtn').disabled = false;
+            updateUI();
+        }
+
+        // Next math question
+        function nextMathQuestion() {
+            gameState.currentQuestion++;
+            if (gameState.currentQuestion < gameState.totalQuestions) {
+                showMathQuestion();
+            } else {
+                // Game completed
+                showGameComplete();
+            }
+        }
+
+        // Start Odia game
+        function startOdiaGame() {
+            gameState.currentOdiaWord = 0;
+            showOdiaWord();
+        }
+
+        // Show Odia word
+        function showOdiaWord() {
+            const word = gameState.odiaWords[gameState.currentOdiaWord];
+            document.getElementById('wordDisplay').textContent = word;
+            
+            const alphabetGrid = document.getElementById('alphabetGrid');
+            alphabetGrid.innerHTML = '';
+            
+            // Show random alphabets including the target
+            const shuffledAlphabets = [...odiaAlphabets].sort(() => Math.random() - 0.5);
+            const selectedAlphabets = shuffledAlphabets.slice(0, 8);
+            
+            if (!selectedAlphabets.includes(word)) {
+                selectedAlphabets[0] = word;
+            }
+            
+            selectedAlphabets.forEach(alphabet => {
+                const btn = document.createElement('button');
+                btn.className = 'alphabet-btn';
+                btn.textContent = alphabet;
+                btn.onclick = () => selectAlphabet(alphabet, btn);
+                alphabetGrid.appendChild(btn);
+            });
+            
+            const progressText = gameState.currentLanguage === 'odia' ? 
+                `ଶବ୍ଦ ${gameState.currentOdiaWord + 1} ରୁ ${gameState.odiaWords.length}` :
+                `Word ${gameState.currentOdiaWord + 1} of ${gameState.odiaWords.length}`;
+            document.getElementById('levelProgress').textContent = progressText;
+        }
+
+        // Select alphabet
+        function selectAlphabet(alphabet, btn) {
+            const word = gameState.odiaWords[gameState.currentOdiaWord];
+            
+            if (alphabet === word) {
+                btn.classList.add('selected');
+                gameState.totalPoints += 5;
+                gameState.streak++;
+                showReward('correct');
+                setTimeout(() => {
+                    nextOdiaWord();
+                }, 1000);
+            } else {
+                btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+                gameState.streak = 0;
+            }
+            
+            updateUI();
+        }
+
+        // Next Odia word
+        function nextOdiaWord() {
+            gameState.currentOdiaWord++;
+            if (gameState.currentOdiaWord < gameState.odiaWords.length) {
+                showOdiaWord();
+            } else {
+                showGameComplete();
+            }
+        }
+
+        // Start English game
+        function startEnglishGame() {
+            gameState.currentEnglishWord = 0;
+            showEnglishWord();
+        }
+
+        // Show English word
+        function showEnglishWord() {
+            const word = gameState.englishWords[gameState.currentEnglishWord];
+            document.getElementById('englishWordDisplay').textContent = word;
+            
+            const alphabetGrid = document.getElementById('englishAlphabetGrid');
+            alphabetGrid.innerHTML = '';
+            
+            // Show random alphabets including the target
+            const shuffledAlphabets = [...englishAlphabets].sort(() => Math.random() - 0.5);
+            const selectedAlphabets = shuffledAlphabets.slice(0, 8);
+            
+            if (!selectedAlphabets.includes(word)) {
+                selectedAlphabets[0] = word;
+            }
+            
+            selectedAlphabets.forEach(alphabet => {
+                const btn = document.createElement('button');
+                btn.className = 'alphabet-btn';
+                btn.textContent = alphabet;
+                btn.onclick = () => selectEnglishAlphabet(alphabet, btn);
+                alphabetGrid.appendChild(btn);
+            });
+            
+            const progressText = gameState.currentLanguage === 'odia' ? 
+                `ଶବ୍ଦ ${gameState.currentEnglishWord + 1} ରୁ ${gameState.englishWords.length}` :
+                `Word ${gameState.currentEnglishWord + 1} of ${gameState.englishWords.length}`;
+            document.getElementById('levelProgress').textContent = progressText;
+        }
+
+        // Select English alphabet
+        function selectEnglishAlphabet(alphabet, btn) {
+            const word = gameState.englishWords[gameState.currentEnglishWord];
+            
+            if (alphabet === word) {
+                btn.classList.add('selected');
+                gameState.totalPoints += 5;
+                gameState.streak++;
+                showReward('correct');
+                setTimeout(() => {
+                    nextEnglishWord();
+                }, 1000);
+            } else {
+                btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+                gameState.streak = 0;
+            }
+            
+            updateUI();
+        }
+
+        // Next English word
+        function nextEnglishWord() {
+            gameState.currentEnglishWord++;
+            if (gameState.currentEnglishWord < gameState.englishWords.length) {
+                showEnglishWord();
+            } else {
+                showGameComplete();
+            }
+        }
+
+        // Show reward popup
+        function showReward(type) {
+            const popup = document.getElementById('rewardPopup');
+            const icon = document.getElementById('rewardIcon');
+            const text = document.getElementById('rewardText');
+            const points = document.getElementById('rewardPoints');
+            
+            if (type === 'correct') {
+                icon.textContent = '⭐';
+                if (gameState.currentLanguage === 'odia') {
+                    text.textContent = 'ବହୁତ ଭଲ!';
+                    points.textContent = `+${gameState.streak > 1 ? gameState.streak * 5 : 10} ପଏଣ୍ଟ`;
+                } else {
+                    text.textContent = 'Great Job!';
+                    points.textContent = `+${gameState.streak > 1 ? gameState.streak * 5 : 10} Points`;
+                }
+            }
+            
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 2000);
+        }
+
+        // Show game complete
+        function showGameComplete() {
+            const accuracy = Math.round((gameState.correctAnswers / gameState.totalQuestions) * 100);
+            
+            if (gameState.currentLanguage === 'odia') {
+                alert(`ଖେଳ ସମାପ୍ତ! ତୁମର ସଫଳତା: ${accuracy}%`);
+                
+                // Level up if good performance
+                if (accuracy >= 80) {
+                    gameState.level++;
+                    alert(`ଅଭିନନ୍ଦନ! ତୁମେ ଲେଭଲ ${gameState.level} ରେ ପହଞ୍ଚିଲ!`);
+                }
+            } else {
+                alert(`Game Complete! Your Success Rate: ${accuracy}%`);
+                
+                // Level up if good performance
+                if (accuracy >= 80) {
+                    gameState.level++;
+                    alert(`Congratulations! You reached Level ${gameState.level}!`);
+                }
+            }
+            
+            showSubjects();
+        }
+
+        // Change character
+        function changeCharacter(emoji) {
+            gameState.character = emoji;
+            document.getElementById('character').textContent = emoji;
+            
+            // Update active color button
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            saveGameState();
+        }
+
+        // Setup offline detection
+        function setupOfflineDetection() {
+            const indicator = document.getElementById('offlineIndicator');
+            
+            function updateOnlineStatus() {
+                if (navigator.onLine) {
+                    indicator.classList.remove('show');
+                } else {
+                    indicator.classList.add('show');
+                }
+            }
+            
+            window.addEventListener('online', updateOnlineStatus);
+            window.addEventListener('offline', updateOnlineStatus);
+            updateOnlineStatus();
+        }
+
+        // Initialize the game when page loads
+        window.addEventListener('load', initGame);
+        
+        // Service Worker for offline functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('data:text/javascript,console.log("SW registered")')
+                    .catch(() => {
+                        // Service worker registration failed, but app still works offline
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.EduPlay" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="android:colorPrimary">@color/colorPrimary</item> <!-- Bright Blue -->
+        <!-- For status bar and darker primary shade -->
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item> <!-- Darker Blue -->
+
+        <!-- Accent color. -->
+        <item name="android:colorAccent">@color/colorAccent</item> <!-- Playful Coral -->
+
+        <!-- Background color. -->
+        <item name="android:colorBackground">@color/colorBackground</item> <!-- Light Cream -->
+
+        <!-- Default Text Color -->
+        <item name="android:textColor">@color/colorText</item> <!-- Dark Grey -->
+
+        <!-- Error color (API 21+) -->
+        <item name="android:colorError" tools:targetApi="lollipop">@color/colorAccent</item> <!-- Using Accent (PlayfulCoral) for errors -->
+
+        <!-- Status bar color (API 21+). -->
+        <item name="android:statusBarColor" tools:targetApi="lollipop">?android:attr/colorPrimaryDark</item>
+
+        <!--
+        Note:
+        - Attributes like colorOnPrimary, colorSecondary, colorOnSecondary, colorSurface, colorOnSurface
+          are not standard attributes for 'android:Theme.Material.Light.NoActionBar'.
+        - These are typically provided by Material Components themes (e.g., Theme.MaterialComponents.Light.NoActionBar).
+        - If you wish to use these fuller theming capabilities, ensure your project includes the
+          'com.google.android.material:material' library correctly and change this theme's parent.
+        - Your SunnyYellow color (colorSecondary) can be used in custom styles for specific UI elements.
+        -->
+    </style>
+</resources>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.EduPlay">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.EduPlay">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:label="Login - EduPlay"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".StudentDashboardActivity"
+            android:exported="false"
+            android:label="Student Dashboard"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".TeacherDashboardActivity"
+            android:exported="false"
+            android:label="Teacher Dashboard"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".MathGamesActivity"
+            android:exported="false"
+            android:label="Mathematics Games"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".OdiaGamesActivity"
+            android:exported="false"
+            android:label="Odia Language Games"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".EnglishGamesActivity"
+            android:exported="false"
+            android:label="English Games"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".CountingGameActivity"
+            android:exported="false"
+            android:label="Counting Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".AdditionGameActivity"
+            android:exported="false"
+            android:label="Addition Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".SubtractionGameActivity"
+            android:exported="false"
+            android:label="Subtraction Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".ShapesGameActivity"
+            android:exported="false"
+            android:label="Shapes Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".OdiaAlphabetGameActivity"
+            android:exported="false"
+            android:label="Odia Alphabet Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".OdiaWordsGameActivity"
+            android:exported="false"
+            android:label="Odia Words Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".OdiaReadingGameActivity"
+            android:exported="false"
+            android:label="Odia Reading Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".EnglishAlphabetGameActivity"
+            android:exported="false"
+            android:label="English Alphabet Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".EnglishWordsGameActivity"
+            android:exported="false"
+            android:label="English Words Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".EnglishPhonicsGameActivity"
+            android:exported="false"
+            android:label="English Phonics Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".MathNumberMatchingGameActivity"
+            android:exported="false"
+            android:label="Number Matching Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".MathShapeSortingGameActivity"
+            android:exported="false"
+            android:label="Shape Sorting Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".OdiaLetterRecognitionGameActivity"
+            android:exported="false"
+            android:label="Odia Letter Recognition Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".EnglishAlphabetSongGameActivity"
+            android:exported="false"
+            android:label="English Alphabet Song Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".MathDartBalloonGameActivity"
+            android:exported="false"
+            android:label="Math Dart Balloon Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+            
+        <activity
+            android:name=".EnglishTrainEngineGameActivity"
+            android:exported="false"
+            android:label="English Train Engine Game"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+        
+        <activity
+            android:name=".WebViewActivity"
+            android:exported="false"
+            android:label="EduPlay Learning"
+            android:theme="@style/Theme.EduPlay"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>
